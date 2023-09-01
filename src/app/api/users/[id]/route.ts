@@ -31,12 +31,6 @@ export async function DELETE(request: Request) {
   return NextResponse.json({ message: `User ${id} deleted` });
 }
 
-type updateData = {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-};
-
 export async function PUT(req: Request) {
   try {
     const { firstName, lastName, email, id } = await req.json();
