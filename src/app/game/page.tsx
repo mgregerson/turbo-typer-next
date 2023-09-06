@@ -1,11 +1,14 @@
-import { prisma } from "@/lib/prisma";
+"use client";
 
-export default async function Game() {
-  const user = await prisma.user.findFirst({
-    where: {
-      email: "test@test.com",
-    },
-  });
+import { useSession } from "next-auth/react";
+import React, { useState } from "react";
 
-  return <h1>Hello, {user?.username}</h1>;
+export default function ClientSideRoot(): any {
+  const { data: session } = useSession();
+
+  const [shown, setShown] = useState<boolean>(false);
+
+  console.log(session, "session in game");
+
+  return <div>Protected Client Page: {session?.user?.email}</div>;
 }
